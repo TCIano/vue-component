@@ -5,7 +5,7 @@ export default {
     list: [
       {
         name: "吃饭",
-        done: true,
+        done: false,
         id: 10,
       },
       {
@@ -19,6 +19,8 @@ export default {
         id: 12,
       },
     ],
+    unFinishList: [],
+    FinishedList: [],
   },
   mutations: {
     delListItem(state, payload) {
@@ -38,6 +40,43 @@ export default {
         }
       });
     },
+    unFinish(state) {
+      if (state.unFinishList.length !== 0) {
+        state.list = state.unFinishList;
+        // console.log(state.list);
+        state.list = state.unFinishList.filter((item) => {
+          return item.done === false;
+        });
+      } else {
+        state.unFinishList = state.list;
+        state.list = state.unFinishList.filter((item) => {
+          return item.done === false;
+        });
+      }
+    },
+    allList(state) {
+      // state.list = state.list;
+      if (state.unFinishList.length !== 0) {
+        state.list = state.unFinishList;
+      }
+    },
+    Finished(state) {
+      if (state.unFinishList.length === 0) {
+        state.unFinishList = state.list;
+        state.list = state.list.filter((item) => {
+          return item.done === true;
+        });
+      } else {
+        state.list = state.unFinishList.filter((item) => {
+          return item.done === true;
+        });
+      }
+    },
+    cleanFinished(state) {
+      state.list.forEach((item) => {
+        item.done = false;
+      });
+    },
   },
   actions: {
     delListItem({ commit }, payload) {
@@ -49,6 +88,18 @@ export default {
     },
     changeRadioS({ commit }, payload) {
       commit("changeRadioS", payload);
+    },
+    unFinish({ commit }) {
+      commit("unFinish");
+    },
+    allList({ commit }) {
+      commit("allList");
+    },
+    Finished({ commit }) {
+      commit("Finished");
+    },
+    cleanFinished({ commit }) {
+      commit("cleanFinished");
     },
   },
   getters: {},

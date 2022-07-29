@@ -29,7 +29,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapListState(["list"]),
+    ...mapListState(["list", "unFinishList", "Finished"]),
   },
   methods: {
     ...mapActions(["user/delListItem", "user/changeRadioS"]),
