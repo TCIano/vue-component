@@ -1,13 +1,19 @@
 <template>
   <div>
     <button
+      :disabled="disable"
       :class="type"
       :style="{
         width: width,
         height: height,
         backgroundColor: color,
+        border: wideBorder === '1' ? `${wideBorder}px soild #000` : '0px',
+        borderRadius: round === '1' ? width : '0px',
       }"
+      ref="button"
+      @click="$emit('btn')"
     >
+      <slot name="icon"> </slot>
       <span>{{ title }}</span>
     </button>
   </div>
@@ -34,8 +40,13 @@ export default {
     color: {
       type: String,
     },
+    wideBorder: {
+      type: String,
+    },
+    disable: {},
+    round: {},
   },
-  created() {},
+  mounted() {},
 
   methods: {},
 };
@@ -44,6 +55,7 @@ export default {
 <style scoped>
 button {
   margin: 5px;
+  color: #fff;
 }
 .primary {
   background-color: green;
@@ -54,7 +66,10 @@ button {
 .warning {
   background-color: pink;
 }
-.warning {
+.danger {
   background-color: red;
+}
+.wideBorder {
+  border: 0px solid #ccc;
 }
 </style>
