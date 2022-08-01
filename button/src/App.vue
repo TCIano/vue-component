@@ -19,7 +19,7 @@
       width="220px"
       height="50px"
       color="#f8091"
-      @btn="btn"
+      @click.native="console.log(123)"
     />
     <!-- 自定义边框 wideBorder=“1” ...宽边框  wideBorder='0' 没边框，默认没有-->
     <buttonVue
@@ -28,7 +28,7 @@
       width="220px"
       height="50px"
       wideBorder="1"
-      @btn="btn"
+      @click="btn"
     />
     <!-- 禁用 按钮 -->
     <buttonVue

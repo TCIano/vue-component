@@ -11,7 +11,7 @@
         borderRadius: round === '1' ? width : '0px',
       }"
       ref="button"
-      @click="$emit('btn')"
+      @click="$emit('click')"
     >
       <slot name="icon"> </slot>
       <span>{{ title }}</span>
@@ -54,6 +54,7 @@ export default {
 
 <style scoped>
 button {
+  /* border: 0; */
   margin: 5px;
   color: #fff;
 }
